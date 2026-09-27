@@ -1,0 +1,195 @@
+.curtain {
+  --bg: #0e0e10;
+  --ink: #f4f2ee;
+  --ink-dim: #908f98;
+  --ink-faint: #5c5b64;
+  --line: rgba(244, 242, 238, 0.14);
+  --line-soft: rgba(244, 242, 238, 0.07);
+  --accent: #ff4e96;
+
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px max(16px, env(safe-area-inset-left));
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  cursor: progress;
+  opacity: 0;
+  animation: curtain-in 0.2s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  will-change: opacity;
+}
+
+.curtain.is-leaving {
+  opacity: 0.995;
+  animation: curtain-out 0.38s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes curtain-in { from { opacity: 0; } to { opacity: 0.995; } }
+
+.curtain.is-quiet .curtain-kicker,
+.curtain.is-quiet .curtain-words,
+.curtain.is-quiet .curtain-bar,
+.curtain.is-quiet .curtain-steps { visibility: hidden; }
+@keyframes curtain-out { from { opacity: 0.995; } to { opacity: 0; } }
+
+.curtain-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.curtain-backdrop i {
+  position: absolute;
+  inset: -8%;
+  background-image: radial-gradient(circle, rgba(244, 242, 238, 0.085) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.curtain-backdrop b {
+  position: absolute;
+  border: 1px solid var(--line-soft);
+  border-radius: 50%;
+}
+
+.curtain-backdrop b:nth-of-type(1) {
+  width: 78vmax;
+  height: 78vmax;
+  right: -30vmax;
+  top: -26vmax;
+}
+
+.curtain-backdrop b:nth-of-type(2) {
+  width: 46vmax;
+  height: 46vmax;
+  left: -18vmax;
+  bottom: -14vmax;
+  border-color: rgba(255, 78, 150, 0.16);
+}
+
+.curtain-body {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 720px);
+  text-align: center;
+}
+
+.curtain-mark {
+  position: relative;
+  width: clamp(112px, 30vw, 164px);
+  aspect-ratio: 1;
+  margin-bottom: clamp(22px, 5vw, 34px);
+}
+
+.curtain-head {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.curtain-vinyl {
+  position: absolute;
+  left: 25.39%;
+  top: 35.94%;
+  width: 49.22%;
+  aspect-ratio: 1;
+  animation: curtain-spin 1.8s linear infinite;
+  will-change: transform;
+}
+
+.curtain-vinyl svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes curtain-spin { to { transform: rotate(360deg); } }
+
+.curtain-kicker {
+  margin: 0 0 clamp(12px, 3vw, 18px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.curtain-words {
+  margin: 0;
+  font-size: clamp(2.4rem, 9vw, 5.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  animation: curtain-word 0.32s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.curtain-dot { color: var(--accent); }
+
+@keyframes curtain-word {
+  from { opacity: 0; transform: translateY(0.18em); }
+  to { opacity: 1; transform: none; }
+}
+
+.curtain-bar {
+  position: relative;
+  width: min(100%, 420px);
+  height: 2px;
+  margin-top: clamp(26px, 6vw, 40px);
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.curtain-bar i {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.curtain-steps {
+  display: flex;
+  gap: clamp(14px, 4vw, 26px);
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.curtain-steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-faint);
+  transition: color 0.3s;
+}
+
+.curtain-steps li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.curtain-steps li.is-now { color: var(--ink); }
+.curtain-steps li.is-now::before { border-color: var(--accent); }
+.curtain-steps li.is-done { color: var(--ink-dim); }
+.curtain-steps li.is-done::before { background: var(--accent); border-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain-vinyl { animation-duration: 7.2s; }
+  .curtain-words { animation: none; }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@loop/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --import tsx src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/server.mjs --external:uWebSockets.js --legal-comments=none --log-level=warning",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js/archive/refs/tags/v20.71.0.tar.gz"
+  },
+  "devDependencies": {
+    "@loop/shared": "*",
+    "@types/node": "^22.20.3",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

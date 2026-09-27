@@ -1,0 +1,22 @@
+{
+  "name": "Keep the Beat",
+  "description": "A co-op music game that mirrors gameplay into an Audiotool project.",
+  "stack": "heroku-24",
+  "formation": {
+    "web": { "quantity": 1, "size": "basic" }
+  },
+  "env": {
+    "AUDIOTOOL_CLIENT_ID": {
+      "description": "Optional. Public Audiotool OAuth client id, only to override the one compiled into the client. Not a secret.",
+      "required": false
+    },
+    "AUDIOTOOL_REDIRECT_URI": {
+      "description": "Optional. The exact redirect URI registered at developer.audiotool.com, trailing slash included. Unset, the deployment's own root URL is used.",
+      "required": false
+    },
+    "PUBLIC_HOST": {
+      "description": "Optional. The site's domain, which www. redirects to and sockets may come from. Defaults to keepthebeat.games.",
+      "required": false
+    }
+  }
+}

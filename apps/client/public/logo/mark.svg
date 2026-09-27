@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Keep the Beat">
+  <g transform="translate(6.4 6.4) scale(0.9)">
+  <path d="M64 121C38 121 19 103 19 79c0-18 8-32 22-40l-6-22C32 7 36 3 43 5c8 2 13 16 15 29 4-1 8-1 12 0C74 21 81 7 90 5c7-2 12 3 9 12L88 40c13 8 21 22 21 39 0 24-19 42-45 42Z" fill="#f4f2ee"/>
+  <path d="M42 14c5 5 8 15 9 26l-7 4c-1-13-4-24-2-30Zm51 0c-5 5-8 15-10 27l-7-4c4-12 11-23 17-23Z" fill="#ff4e96"/>
+  <circle cx="64" cy="79" r="35" fill="#22232b"/>
+  <path d="M37 80c0-15 12-27 27-28v5C52 58 42 68 42 80Zm54 0c0 15-12 27-27 28v-5c12-1 22-11 22-23Z" fill="#50505b"/>
+  <circle cx="64" cy="79" r="13" fill="#ff4e96"/>
+  <circle cx="64" cy="79" r="3.5" fill="#f4f2ee"/>
+  </g>
+</svg>

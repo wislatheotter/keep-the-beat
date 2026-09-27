@@ -1,0 +1,9 @@
+Disco ball (public/props/disco-ball/disco-ball.glb, DiscoUV.png)
+
+"Disco Ball" by Cough-E, CC0
+Source: https://opengameart.org/content/disco-ball-0
+
+Copyright/Attribution Notice:  Use however you want, no credit needed
+
+The mesh is exported unchanged from the author's DiscoBall.blend (geometry
+and UVs only). The texture DiscoUV.png is shipped as released.

@@ -1,0 +1,28 @@
+{
+  "name": "audiotool-coop-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c auto \"npm run dev -w @loop/server\" \"npm run dev -w @loop/client\"",
+    "dev:client": "npm run dev -w @loop/client",
+    "dev:server": "npm run dev -w @loop/server",
+    "build": "npm run build -w @loop/client && npm run build -w @loop/server",
+    "typecheck": "npm run typecheck -w @loop/shared && npm run typecheck -w @loop/server && npm run typecheck -w @loop/client",
+    "start": "npm run start -w @loop/server",
+    "heroku-postbuild": "npm run build",
+    "heroku-cleanup": "rm -rf apps/client/src apps/client/public apps/client/*.html apps/client/vite.config.ts apps/client/tsconfig.json apps/client/tsconfig.tsbuildinfo packages/shared/src apps/server/src apps/server/tsconfig.json && find node_modules/uWebSockets.js -name 'uws_*.node' ! -name 'uws_linux_x64_*' -delete"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
